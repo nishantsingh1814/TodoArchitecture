@@ -5,9 +5,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1F5FE"
-
-    tools:context="com.example.nish.keepit.MainActivity">
+    android:background="#E1F5FE">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -17,7 +15,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_float"
+        android:id="@+id/add_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -26,9 +24,7 @@
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_add"
         app:backgroundTint="#e600e6"
-        app:elevation="4dp"
-
-        />
+        app:elevation="4dp" />
 
 
 </RelativeLayout>
