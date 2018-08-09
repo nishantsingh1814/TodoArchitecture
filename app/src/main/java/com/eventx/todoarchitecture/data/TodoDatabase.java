@@ -5,14 +5,14 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = NoteModel.class, version = 1)
-public abstract class NoteDatabase extends RoomDatabase {
+@Database(entities = TodoModel.class, version = 1)
+public abstract class TodoDatabase extends RoomDatabase {
 
-    private static NoteDatabase INSTANCE;
+    private static TodoDatabase INSTANCE;
 
-    public static NoteDatabase getDatabase(Context context) {
+    public static TodoDatabase getDatabase(Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), NoteDatabase.class, "notes.db").build();
+            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), TodoDatabase.class, "notes.db").build();
         }
         return INSTANCE;
     }
@@ -20,5 +20,5 @@ public abstract class NoteDatabase extends RoomDatabase {
     public static void destroyInstance(){
         INSTANCE=null;
     }
-    public abstract NoteModelDao noteItemAndNotesModel();
+    public abstract TodoModelDao todoItemAndTodosDao();
 }

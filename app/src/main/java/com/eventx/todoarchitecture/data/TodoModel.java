@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity
-public class NoteModel {
+public class TodoModel {
 
     @PrimaryKey(autoGenerate = true)
     public long id;
@@ -53,7 +53,7 @@ public class NoteModel {
         this.id = id;
     }
 
-    public NoteModel( String title, String description, long date, String repeat) {
+    public TodoModel(String title, String description, long date, String repeat) {
 
         this.title = title;
         this.description = description;

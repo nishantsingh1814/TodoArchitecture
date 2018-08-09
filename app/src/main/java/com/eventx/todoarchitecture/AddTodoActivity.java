@@ -17,15 +17,15 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.eventx.todoarchitecture.data.AddNoteViewModel;
-import com.eventx.todoarchitecture.data.NoteModel;
+import com.eventx.todoarchitecture.viewmodels.AddTodoViewModel;
+import com.eventx.todoarchitecture.data.TodoModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class AddNoteActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddTodoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText title;
     private EditText description;
@@ -38,7 +38,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
     TimePickerDialog.OnTimeSetListener time;
     FloatingActionButton addFine;
 
-    private AddNoteViewModel viewModel;
+    private AddTodoViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         loop = findViewById(R.id.loop);
         dateButton.setOnClickListener(this);
         timeButton.setOnClickListener(this);
-        viewModel = ViewModelProviders.of(this).get(AddNoteViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(AddTodoViewModel.class);
 
         ArrayList<String> list = new ArrayList<>();
         list.add("Every Minute");
@@ -72,26 +72,26 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 if (dateButton.getText().toString().equals("Select Date")) {
                     if (timeButton.getText().toString().equals("Select Time")) {
-                        Toast.makeText(AddNoteActivity.this, "select date and time", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddTodoActivity.this, "select date and time", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    Toast.makeText(AddNoteActivity.this, "select date", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddTodoActivity.this, "select date", Toast.LENGTH_SHORT).show();
                     return;
                 } else if (timeButton.getText().toString().equals("Select Time")) {
-                    Toast.makeText(AddNoteActivity.this, "select time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddTodoActivity.this, "select time", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 long epoch = mCalendar.getTimeInMillis();
                 if (epoch < Calendar.getInstance().getTimeInMillis()) {
-                    Toast.makeText(AddNoteActivity.this, "select future time", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddTodoActivity.this, "select future time", Toast.LENGTH_LONG).show();
                     return;
                 }
-                NoteModel noteModel = new NoteModel(title.getText().toString().trim()
+                TodoModel todoModel = new TodoModel(title.getText().toString().trim()
                         , description.getText().toString().trim()
                         , epoch
                         , repeat.isChecked() ? loop.getSelectedItem().toString() : null
                 );
-                viewModel.addNote(noteModel);
+                viewModel.addNote(todoModel);
 
 
 
@@ -163,9 +163,9 @@ public class AddNoteActivity extends AppCompatActivity implements View.OnClickLi
         int id = v.getId();
 
         if (id == R.id.date) {
-            new DatePickerDialog(AddNoteActivity.this, date, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            new DatePickerDialog(AddTodoActivity.this, date, mCalendar.get(Calendar.YEAR), mCalendar.get(Calendar.MONTH), mCalendar.get(Calendar.DAY_OF_MONTH)).show();
         } else if (id == R.id.time) {
-            new TimePickerDialog(AddNoteActivity.this, time, mCalendar.get(Calendar.HOUR_OF_DAY), mCalendar.get(Calendar.MINUTE), false).show();
+            new TimePickerDialog(AddTodoActivity.this, time, mCalendar.get(Calendar.HOUR_OF_DAY), mCalendar.get(Calendar.MINUTE), false).show();
         }
 
     }

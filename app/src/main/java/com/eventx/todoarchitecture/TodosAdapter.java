@@ -8,18 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.eventx.todoarchitecture.data.NoteModel;
+import com.eventx.todoarchitecture.data.TodoModel;
 
 import java.util.List;
 
-public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHolder> {
+public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.NoteViewHolder> {
 
     private Context mContext;
-    private List<NoteModel> mNoteList;
+    private List<TodoModel> mNoteList;
     private View.OnLongClickListener onLongClickListener;
 
 
-    public NotesAdapter(Context mContext, List<NoteModel> mNoteList, View.OnLongClickListener onLongClickListener) {
+    public TodosAdapter(Context mContext, List<TodoModel> mNoteList, View.OnLongClickListener onLongClickListener) {
         this.mContext = mContext;
         this.mNoteList = mNoteList;
         this.onLongClickListener = onLongClickListener;
@@ -33,12 +33,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
 
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder holder, int position) {
-        NoteModel noteModel = mNoteList.get(position);
-        holder.date.setText(noteModel.getDate() + "");
-        holder.description.setText(noteModel.getDescription());
-        holder.title.setText(noteModel.getTitle());
-        holder.repeat.setText(noteModel.getRepeat());
-        holder.itemView.setTag(noteModel);
+        TodoModel todoModel = mNoteList.get(position);
+        holder.date.setText(todoModel.getDate() + "");
+        holder.description.setText(todoModel.getDescription());
+        holder.title.setText(todoModel.getTitle());
+        holder.repeat.setText(todoModel.getRepeat());
+        holder.itemView.setTag(todoModel);
         holder.itemView.setOnLongClickListener(onLongClickListener);
     }
 
@@ -46,8 +46,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     public int getItemCount() {
         return mNoteList.size();
     }
-    public void addNote(List<NoteModel> noteModels){
-        this.mNoteList= noteModels;
+    public void addNote(List<TodoModel> todoModels){
+        this.mNoteList= todoModels;
         notifyDataSetChanged();
     }
 

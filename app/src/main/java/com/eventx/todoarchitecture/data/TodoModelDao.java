@@ -10,18 +10,18 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface NoteModelDao {
+public interface TodoModelDao {
 
-    @Query("SELECT * FROM NoteModel")
-    LiveData<List<NoteModel>> getAllNotes();
+    @Query("SELECT * FROM TodoModel")
+    LiveData<List<TodoModel>> getAllNotes();
 
-    @Query("SELECT * FROM NoteModel WHERE id=:id")
-    NoteModel getNoteById(long id);
+    @Query("SELECT * FROM TodoModel WHERE id=:id")
+    TodoModel getTodoById(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertNote(NoteModel noteModel);
+    void insertNote(TodoModel todoModel);
 
 
     @Delete
-    void deleteNote(NoteModel noteModel);
+    void deleteNote(TodoModel todoModel);
 }
