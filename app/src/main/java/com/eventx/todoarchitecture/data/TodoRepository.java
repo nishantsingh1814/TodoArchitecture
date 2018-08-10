@@ -1,6 +1,8 @@
 package com.eventx.todoarchitecture.data;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.LivePagedListBuilder;
+import android.arch.paging.PagedList;
 
 import java.util.List;
 
@@ -12,7 +14,10 @@ public class TodoRepository {
     }
 
     public LiveData<List<TodoModel>> getAllTodos() {
-        return todoModelDao.getAllNotes();
+        return new LivePagedListBuilder(todoModelDao.getAllNotes(), new PagedList.Config.Builder()
+                .setPageSize(10)
+                .build()
+        ).build();
     }
 
     public TodoModel getTodo(long id) {

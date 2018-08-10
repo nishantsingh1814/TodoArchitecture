@@ -20,6 +20,7 @@ public class TodoListViewModel extends AndroidViewModel {
     public TodoListViewModel(@NonNull Application application) {
         super(application);
         todoRepository = new TodoRepository(TodoDatabase.getDatabase(getApplication()));
+
         noteList = todoRepository.getAllTodos();
     }
 

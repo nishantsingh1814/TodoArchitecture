@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -46,10 +47,12 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         mTodosAdapter = new TodosAdapter(this, new ArrayList<TodoModel>(), this);
         mAddFab = findViewById(R.id.add_fab);
         mNotesRv.setLayoutManager(new LinearLayoutManager(this));
+
         mNotesRv.setAdapter(mTodosAdapter);
         viewModel.getNoteList().observe(this, new Observer<List<TodoModel>>() {
             @Override
             public void onChanged(@Nullable List<TodoModel> todoModels) {
+                Log.i("changetest", "onChanged: "+todoModels.size());
                 mTodosAdapter.addNote(todoModels);
             }
         });
